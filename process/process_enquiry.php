@@ -24,38 +24,38 @@ if (!empty($_POST['website_url'])) {
 }
 
 // 3. Input Sanitization
-$client_name = htmlspecialchars(trim($_POST['client_name'] ?? ''));
-$contact_person = htmlspecialchars(trim($_POST['contact_person'] ?? ''));
+$name = htmlspecialchars(trim($_POST['name'] ?? ''));
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $phone = htmlspecialchars(trim($_POST['phone'] ?? ''));
-$service_type = htmlspecialchars(trim($_POST['service_type'] ?? ''));
 $message = htmlspecialchars(trim($_POST['message'] ?? ''));
 
 // 4. Server-side Validation
-if (empty($client_name) || empty($contact_person) || empty($email) || empty($phone) || empty($service_type) || empty($message)) {
-    echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
+if (empty($name) || empty($phone) || empty($message)) {
+    echo json_encode(['status' => 'error', 'message' => 'Name, Phone, and Message are required.']);
     exit;
 }
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode(['status' => 'error', 'message' => 'Invalid email address format.']);
     exit;
 }
 
 // 5. Send Email
 $to = $config['email_address'];
-$subject = "New Examination Service Enquiry from $client_name";
+$subject = "New Enquiry from $name";
 
 $email_content = "You have received a new enquiry from the website.\n\n";
-$email_content .= "Client / Organization: $client_name\n";
-$email_content .= "Contact Person: $contact_person\n";
-$email_content .= "Email: $email\n";
+$email_content .= "Name: $name\n";
 $email_content .= "Phone: $phone\n";
-$email_content .= "Service Required: $service_type\n\n";
-$email_content .= "Message:\n$message\n";
+if (!empty($email)) {
+    $email_content .= "Email: $email\n";
+}
+$email_content .= "\nMessage:\n$message\n";
 
 $headers = "From: noreply@" . parse_url($config['base_url'], PHP_URL_HOST) . "\r\n";
-$headers .= "Reply-To: $email\r\n";
+if (!empty($email)) {
+    $headers .= "Reply-To: $email\r\n";
+}
 $headers .= "X-Mailer: PHP/" . phpversion();
 
 // Attempt to send email
