@@ -42,31 +42,82 @@ if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 // 5. Send Email
 $to = $config['email_address'];
-$subject = "New Enquiry from $name";
+$subject = "New Enquiry from Shiksha Ratan Website";
+$domain = parse_url((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'], PHP_URL_HOST) ?: 'shiksharatanindia.com';
+$from_email = !empty($email) ? $email : "noreply@$domain";
 
-$email_content = "You have received a new enquiry from the website.\n\n";
+// Generate boundary for multipart email
+$boundary = md5(time());
+
+// Prepare email content with HTML formatting
+$email_content = "--$boundary\r\n";
+$email_content .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$email_content .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+$email_content .= "Dear Admin,\n\n";
+$email_content .= "You have received a new enquiry from the Shiksha Ratan website.\n\n";
+$email_content .= "Enquiry Details:\n";
+$email_content .= "-------------\n";
 $email_content .= "Name: $name\n";
 $email_content .= "Phone: $phone\n";
 if (!empty($email)) {
     $email_content .= "Email: $email\n";
 }
-$email_content .= "\nMessage:\n$message\n";
+$email_content .= "\nMessage:\n$message\n\n";
+$email_content .= "Best regards,\n";
+$email_content .= "Shiksha Ratan Website\n";
 
-$headers = "From: noreply@" . parse_url($config['base_url'], PHP_URL_HOST) . "\r\n";
+$email_content .= "\r\n--$boundary\r\n";
+$email_content .= "Content-Type: text/html; charset=UTF-8\r\n";
+$email_content .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
+$email_content .= "<html><body>";
+$email_content .= "<h2 style='color: #fc4a1a;'>New Enquiry from Shiksha Ratan Website</h2>";
+$email_content .= "<p><strong>Name:</strong> $name</p>";
+$email_content .= "<p><strong>Phone:</strong> $phone</p>";
 if (!empty($email)) {
-    $headers .= "Reply-To: $email\r\n";
+    $email_content .= "<p><strong>Email:</strong> $email</p>";
 }
-$headers .= "X-Mailer: PHP/" . phpversion();
+$email_content .= "<p><strong>Message:</strong><br>$message</p>";
+$email_content .= "<hr>";
+$email_content .= "</body></html>";
+$email_content .= "\r\n--$boundary--";
 
-// Attempt to send email
-if (mail($to, $subject, $email_content, $headers)) {
-    echo json_encode(['status' => 'success', 'message' => 'Your enquiry has been sent successfully. We will get back to you soon.']);
-} else {
-    // For local testing where mail server might not be configured, 
-    // we can still return success to show the UI works, but ideally we should return error.
-    // echo json_encode(['status' => 'error', 'message' => 'Failed to send email. Please check server configuration.']);
-    
-    // Using success for demo purposes if mail() fails on localhost without SMTP
-    echo json_encode(['status' => 'success', 'message' => 'Your enquiry has been processed (Mail function triggered).']);
+// Improved email headers for better deliverability
+$headers = array(
+    'From' => "Shiksha Ratan <noreply@$domain>",
+    'Reply-To' => "$name <$from_email>",
+    'Return-Path' => "<noreply@$domain>",
+    'Organization' => 'Shiksha Ratan',
+    'X-Mailer' => 'PHP/' . phpversion(),
+    'Content-Type' => "multipart/alternative; boundary=\"$boundary\"",
+    'MIME-Version' => '1.0',
+    'X-Priority' => '1',
+    'Importance' => 'High',
+    'Message-ID' => '<' . time() . '-' . md5($from_email . $to) . '@' . $domain . '>',
+    'X-Originating-IP' => $_SERVER['REMOTE_ADDR'],
+    'Date' => date('r'),
+    'List-Unsubscribe' => "<mailto:$to?subject=unsubscribe>",
+    'Precedence' => 'bulk',
+    'Auto-Submitted' => 'auto-generated',
+    'X-Auto-Response-Suppress' => 'All'
+);
+
+// Convert headers array to string
+$headers_str = '';
+foreach($headers as $key => $value) {
+    $headers_str .= "$key: $value\r\n";
 }
+
+try {
+    // Attempt to send email
+    if(mail($to, $subject, $email_content, $headers_str)) {
+        $response = array('status' => 'success', 'message' => 'Thank you for contacting us. We will be in touch with you very soon.');
+    } else {
+        throw new Exception("Mail sending failed");
+    }
+} catch (Exception $e) {
+    $response = array('status' => 'error', 'message' => 'Failed to send message. Please try again later.');
+}
+
+echo json_encode($response);
+exit;
 ?>
