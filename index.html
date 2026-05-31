@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shiksha Ratan Talent Hunt – Discover. Nurture. Empower.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  --navy:       #050d2a;
+  --navy-mid:   #0b1945;
+  --navy-light: #132060;
+  --gold:       #d4a017;
+  --gold-light: #f0c84a;
+  --gold-pale:  #fdf3d0;
+  --crimson:    #c0392b;
+  --white:      #ffffff;
+  --off-white:  #f5f0e8;
+  --text-muted: #9fabc7;
+  --border:     rgba(212,160,23,0.25);
+
+  --ff-display: 'Bebas Neue', sans-serif;
+  --ff-serif:   'Playfair Display', serif;
+  --ff-body:    'DM Sans', sans-serif;
+
+  --radius:     12px;
+  --shadow-card: 0 20px 60px rgba(0,0,0,0.45);
+  --shadow-glow: 0 0 40px rgba(212,160,23,0.18);
+}
+
+/* ─── RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-body);
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+/* ─── UTILITY ────────────────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.gold { color: var(--gold); }
+.tag {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 6px 18px;
+  margin-bottom: 16px;
+}
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy);
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 16px 36px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 8px 30px rgba(212,160,23,0.35);
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(212,160,23,0.5); }
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 15px 34px;
+  border-radius: 50px;
+  border: 2px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,160,23,0.07); }
+
+/* ─── NOISE OVERLAY ──────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════════════ */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+  padding: 0;
+}
+.header.scrolled {
+  background: rgba(5, 13, 42, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-icon {
+  width: 52px;
+  height: 52px;
+  position: relative;
+}
+.logo-diamond {
+  width: 52px;
+  height: 52px;
+}
+.logo-text { line-height: 1.1; }
+.logo-text .name {
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.logo-text .name span { color: var(--gold); }
+.logo-text .sub {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Nav */
+.nav { display: flex; align-items: center; gap: 6px; }
+.nav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+  position: relative;
+}
+.nav a:hover, .nav a.active { color: var(--white); background: rgba(255,255,255,0.06); }
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* Dropdown */
+.nav-item { position: relative; }
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-width: 200px;
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.dropdown a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.8);
+}
+.dropdown a:hover { background: rgba(212,160,23,0.1); color: var(--gold); }
+
+.header-cta { display: flex; align-items: center; gap: 12px; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px; left: 0; right: 0;
+  background: rgba(5,13,42,0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  padding: 20px 24px 30px;
+  z-index: 999;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s;
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; display: block; }
+.mobile-menu a {
+  display: block;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.85);
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu .btn-gold { margin-top: 20px; width: 100%; justify-content: center; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+/* Animated BG */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(19,32,96,0.9) 0%, var(--navy) 70%);
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.12) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: floatPulse 6s ease-in-out infinite;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(19,32,96,0.8) 0%, transparent 70%);
+  bottom: 50px; left: -80px;
+  animation: floatPulse 8s ease-in-out infinite reverse;
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: scale(1) translate(0,0); }
+  50% { transform: scale(1.1) translate(20px, -20px); }
+}
+
+/* Decorative stars */
+.stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  animation: twinkle var(--dur, 3s) ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.5); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.hero-left { max-width: 580px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,160,23,0.12);
+  border: 1px solid rgba(212,160,23,0.35);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(52px, 7vw, 90px);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.hero-h1 .outline {
+  -webkit-text-stroke: 2px var(--gold);
+  color: transparent;
+}
+.hero-sub-heading {
+  font-family: var(--ff-serif);
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: var(--gold-light);
+  font-style: italic;
+  margin-bottom: 24px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.hero-desc {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+.stat-item {}
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Hero right — trophy card */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.trophy-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+.trophy-card-inner {
+  background: linear-gradient(145deg, var(--navy-mid), var(--navy-light));
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 44px 36px;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.trophy-card-inner::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 70%);
+}
+.trophy-icon-wrap {
+  font-size: 72px;
+  margin-bottom: 8px;
+  animation: floatY 3s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.trophy-card h3 {
+  font-family: var(--ff-display);
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.trophy-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.prize-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.prize-box {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+}
+.prize-rank { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.prize-amount { font-family: var(--ff-display); font-size: 22px; color: var(--gold); line-height: 1; }
+.prize-extra { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+.prize-box.first { border-color: rgba(212,160,23,0.6); background: rgba(212,160,23,0.08); }
+
+.class-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 24px;
+  border-radius: 50px;
+}
+
+/* floating badge top right of card */
+.card-float-badge {
+  position: absolute;
+  top: -14px; right: 20px;
+  background: var(--crimson);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 50px;
+  box-shadow: 0 4px 16px rgba(192,57,43,0.5);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TRUST BAR
+═══════════════════════════════════════════════════════════════ */
+.trust-bar {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+.trust-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.trust-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(212,160,23,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+.trust-text strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+}
+.trust-text span { font-size: 12px; color: var(--text-muted); }
+.trust-divider {
+  width: 1px; height: 40px;
+  background: var(--border);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ABOUT / INTRO
+═══════════════════════════════════════════════════════════════ */
+.about-section {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-visual {
+  position: relative;
+}
+.about-card-stack {
+  position: relative;
+  height: 480px;
+}
+.acard {
+  position: absolute;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+}
+.acard-main {
+  background: linear-gradient(145deg, var(--navy-light), var(--navy-mid));
+  width: 85%;
+  top: 0; left: 0;
+  z-index: 2;
+}
+.acard-back {
+  background: linear-gradient(145deg, rgba(212,160,23,0.1), rgba(5,13,42,0.8));
+  width: 75%;
+  top: 30px; right: 0;
+  z-index: 1;
+  border-color: rgba(212,160,23,0.15);
+}
+.acard-bottom {
+  background: var(--navy-mid);
+  width: 90%;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.acard-main h4 {
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.subj-chip {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.subj-chip .icon { font-size: 20px; display: block; margin-bottom: 4px; }
+.acard-bottom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  bottom: 0;
+}
+.acard-bottom .num {
+  font-family: var(--ff-display);
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+}
+.acard-bottom .lbl { font-size: 12px; color: var(--text-muted); }
+
+.about-text .tag { margin-bottom: 16px; }
+.about-text h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.about-text p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.objectives {
+  margin: 32px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.obj-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  transition: border-color 0.25s;
+}
+.obj-item:hover { border-color: var(--border); }
+.obj-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.obj-item h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.obj-item p { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   OLYMPIAD SECTION
+═══════════════════════════════════════════════════════════════ */
+.olympiad-section {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.olympiad-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(19,32,96,0.6) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 64px;
+}
+.section-header h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-header p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.olympiad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.olympiad-card {
+  background: linear-gradient(145deg, var(--navy-mid), var(--navy-light));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.olympiad-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.olympiad-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-card), var(--shadow-glow); }
+.olympiad-card:hover::before { opacity: 1; }
+
+.oc-icon { font-size: 44px; margin-bottom: 16px; }
+.oc-title {
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.oc-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+.oc-classes {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(212,160,23,0.1);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 12px;
+  color: var(--gold-light);
+  padding: 6px 14px;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════════════════════ */
+.how-section { background: var(--navy-mid); }
+
+.steps-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  counter-reset: step;
+}
+.step-connector {
+  position: absolute;
+  top: 40px;
+  left: calc(12.5% + 20px);
+  right: calc(12.5% + 20px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  opacity: 0.3;
+  z-index: 0;
+}
+.step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 16px;
+}
+.step-num {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ff-display);
+  font-size: 28px;
+  color: var(--gold);
+  margin: 0 auto 20px;
+  box-shadow: 0 0 30px rgba(212,160,23,0.2);
+  position: relative;
+}
+.step-num .step-icon { font-size: 28px; }
+.step h4 { font-family: var(--ff-serif); font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════════════════
+   AWARDS
+═══════════════════════════════════════════════════════════════ */
+.awards-section { background: var(--navy); }
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.awards-text h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.awards-text p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; }
+
+.prize-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.prize-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.prize-card:hover { transform: translateX(6px); box-shadow: var(--shadow-glow); }
+.prize-medal { font-size: 36px; flex-shrink: 0; }
+.prize-info { flex: 1; }
+.prize-info .rank-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.prize-info .rank-val {
+  font-family: var(--ff-display);
+  font-size: 26px;
+  color: var(--white);
+  line-height: 1;
+}
+.prize-info .rank-extras { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.prize-card.rank1 { border-color: rgba(212,160,23,0.5); background: linear-gradient(135deg, rgba(212,160,23,0.08), var(--navy-light)); }
+.prize-card.rank1 .rank-val { color: var(--gold); }
+
+.perks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+.perk {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+}
+.perk .check { color: var(--gold); font-size: 16px; }
+
+/* Right side visual */
+.awards-visual {
+  position: relative;
+}
+.big-prize-display {
+  background: linear-gradient(145deg, var(--navy-light), var(--navy-mid));
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 48px 36px;
+  text-align: center;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+.big-trophy { font-size: 100px; animation: floatY 3s ease-in-out infinite; display: block; margin-bottom: 16px; }
+.big-prize-display h3 {
+  font-family: var(--ff-display);
+  font-size: 52px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.big-prize-display p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+.all-get {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.all-get strong { display: block; color: var(--white); font-size: 14px; margin-bottom: 6px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   EXAM PATTERN
+═══════════════════════════════════════════════════════════════ */
+.exam-section { background: var(--navy-mid); }
+
+.exam-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.pattern-card {
+  background: linear-gradient(145deg, var(--navy), var(--navy-light));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: var(--shadow-card);
+}
+.pattern-card h4 {
+  font-family: var(--ff-serif);
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: var(--gold-light);
+  display: flex; align-items: center; gap: 10px;
+}
+.pattern-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.pattern-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.85);
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.pattern-list li .pill {
+  margin-left: auto;
+  background: rgba(212,160,23,0.12);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+}
+
+.subjects-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.subj-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(145deg, var(--navy), var(--navy-mid));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.25s;
+}
+.subj-card:hover { transform: translateX(6px); }
+.subj-card .sc-icon { font-size: 32px; flex-shrink: 0; }
+.subj-card h5 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.subj-card p { font-size: 13px; color: var(--text-muted); }
+.subj-card .sc-tag {
+  margin-left: auto;
+  font-size: 11px;
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCHOOL PARTNERSHIP
+═══════════════════════════════════════════════════════════════ */
+.partner-section {
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.partner-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,160,23,0.08) 0%, transparent 70%);
+}
+
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+.partner-text h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.partner-text p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 28px; }
+.partner-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.pb-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+.pb-item .check { color: var(--gold); font-size: 18px; }
+
+.partner-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.pc {
+  background: rgba(5,13,42,0.5);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: transform 0.25s, background 0.25s;
+}
+.pc:hover { transform: translateY(-6px); background: rgba(19,32,96,0.6); }
+.pc .pci { font-size: 36px; margin-bottom: 10px; }
+.pc h5 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.pc p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════════════════════════════ */
+.cta-banner {
+  background: linear-gradient(135deg, #1a0a05, #2a1505, var(--navy));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(212,160,23,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-banner h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 6vw, 72px);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.cta-banner p { font-size: 18px; color: var(--text-muted); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.cta-contact {
+  margin-top: 28px;
+  font-size: 14px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cta-contact a { color: var(--gold-light); transition: color 0.2s; }
+.cta-contact a:hover { color: var(--white); }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+.footer {
+  background: #020918;
+  border-top: 1px solid var(--border);
+  padding-top: 70px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  gap: 48px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand .logo { margin-bottom: 16px; }
+.footer-brand p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  max-width: 280px;
+}
+.social-links { display: flex; gap: 10px; }
+.social-link {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.social-link:hover { background: rgba(212,160,23,0.15); border-color: var(--border); transform: translateY(-2px); }
+
+.footer-col h5 {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 0.2s, padding-left 0.2s;
+  display: flex; align-items: center; gap: 6px;
+}
+.footer-col ul li a:hover { color: var(--white); padding-left: 6px; }
+.footer-col ul li a::before { content: '→'; font-size: 11px; color: var(--gold); opacity: 0; transition: opacity 0.2s; }
+.footer-col ul li a:hover::before { opacity: 1; }
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.fci-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: rgba(212,160,23,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.fci-text { font-size: 13px; }
+.fci-text strong { display: block; color: var(--white); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+.fci-text a { color: var(--text-muted); transition: color 0.2s; }
+.fci-text a:hover { color: var(--gold-light); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom a { color: var(--text-muted); transition: color 0.2s; }
+.footer-bottom a:hover { color: var(--gold-light); }
+.footer-bottom-links { display: flex; gap: 20px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-grid,
+  .olympiad-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .olympiad-grid { grid-template-columns: 1fr 1fr; }
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .hero-right { display: none; }
+  .awards-grid, .exam-grid, .partner-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .section { padding: 70px 0; }
+  .nav, .header-cta .btn-outline { display: none; }
+  .hamburger { display: flex; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .olympiad-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .trust-bar-inner { justify-content: flex-start; }
+  .trust-divider { display: none; }
+  .steps-container { flex-direction: column; align-items: center; gap: 32px; }
+  .step-connector { display: none; }
+  .objectives { grid-template-columns: 1fr; }
+  .perks-grid { grid-template-columns: 1fr; }
+  .partner-cards-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════ -->
+<header class="header" id="header">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <svg class="logo-diamond" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="26,2 50,18 50,36 26,50 2,36 2,18" fill="none" stroke="rgba(212,160,23,0.3)" stroke-width="1"/>
+        <polygon points="26,6 46,19 46,34 26,47 6,34 6,19" fill="rgba(19,32,96,0.8)"/>
+        <!-- diamond facets -->
+        <polygon points="26,6 38,16 26,20" fill="#e63946" opacity="0.9"/>
+        <polygon points="38,16 46,19 36,24 26,20" fill="#f4a261" opacity="0.9"/>
+        <polygon points="26,20 36,24 26,47" fill="#2d6a4f" opacity="0.9"/>
+        <polygon points="26,20 16,24 26,47" fill="#4361ee" opacity="0.9"/>
+        <polygon points="6,19 16,24 26,20 26,6 14,16" fill="#9b5de5" opacity="0.9"/>
+        <polygon points="14,16 26,6 26,20 16,24 6,19 6,19" fill="#f72585" opacity="0.7"/>
+        <polygon points="36,24 46,19 46,34 26,47" fill="#48cae4" opacity="0.7"/>
+        <polygon points="6,19 6,34 26,47 16,24" fill="#7b2d8b" opacity="0.7"/>
+        <!-- book base -->
+        <rect x="14" y="42" width="24" height="6" rx="2" fill="rgba(212,160,23,0.5)"/>
+        <!-- people silhouette hint -->
+        <circle cx="22" cy="12" r="2.5" fill="rgba(255,255,255,0.8)"/>
+        <circle cx="26" cy="10" r="2.5" fill="rgba(255,255,255,0.9)"/>
+        <circle cx="30" cy="12" r="2.5" fill="rgba(255,255,255,0.8)"/>
+        <!-- star on top -->
+        <polygon points="26,1 27.2,4.5 31,4.5 28,6.8 29.2,10.5 26,8.2 22.8,10.5 24,6.8 21,4.5 24.8,4.5" fill="#d4a017"/>
+      </svg>
+      <div class="logo-text">
+        <div class="name">SHIKSHA <span>RATAN</span></div>
+        <div class="sub">Talent Hunt</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="nav">
+      <a href="index.html" class="active">Home</a>
+      <div class="nav-item">
+        <a href="about.html">About ▾</a>
+        <div class="dropdown">
+          <a href="about.html">About Us</a>
+          <a href="about.html#mission">Our Mission</a>
+          <a href="about.html#team">Our Team</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="olympiad.html">Olympiads ▾</a>
+        <div class="dropdown">
+          <a href="olympiad.html">All Olympiads</a>
+          <a href="olympiad.html#science">Science Olympiad</a>
+          <a href="olympiad.html#maths">Maths Olympiad</a>
+          <a href="olympiad.html#english">English Olympiad</a>
+          <a href="olympiad.html#gk">GK Olympiad</a>
+          <a href="olympiad.html#cyber">Cyber Olympiad</a>
+        </div>
+      </div>
+      <a href="schools.html">For Schools</a>
+      <a href="results.html">Results</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="contact.html" class="btn-outline">School Partner</a>
+      <a href="register.html" class="btn-gold">Register Now →</a>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="olympiad.html">Olympiads</a>
+  <a href="schools.html">For Schools</a>
+  <a href="results.html">Results & Awards</a>
+  <a href="contact.html">Contact Us</a>
+  <a href="register.html" class="btn-gold">Register Now →</a>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          National Level Talent Platform
+        </div>
+
+        <h1 class="hero-h1">
+          DISCOVER<br>
+          <span class="outline">YOUR</span><br>
+          GENIUS
+        </h1>
+
+        <p class="hero-sub-heading">Where Every Child's Brilliance Shines</p>
+
+        <p class="hero-desc">
+          India's most trusted Olympiad & Scholarship platform for Classes 1–12. 
+          Compete, learn, and win — with national recognition, cash prizes, and certificates that shape champions.
+        </p>
+
+        <div class="hero-actions">
+          <a href="register.html" class="btn-gold">Register Now →</a>
+          <a href="olympiad.html" class="btn-outline">Explore Olympiads</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num">50K+</div>
+            <div class="stat-label">Students</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Partner Schools</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">12</div>
+            <div class="stat-label">Subject Areas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">₹2100</div>
+            <div class="stat-label">Top Prize</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trophy card (desktop) -->
+      <div class="hero-right">
+        <div class="trophy-card">
+          <div class="card-float-badge">Coming Soon</div>
+          <div class="trophy-card-inner">
+            <div class="trophy-icon-wrap">🏆</div>
+            <h3>KIDS TALENT OLYMPIAD</h3>
+            <p>National Level Pattern • Classes 1st to 12th</p>
+
+            <div class="prize-row">
+              <div class="prize-box first">
+                <div class="prize-rank">1st Prize</div>
+                <div class="prize-amount">₹2100</div>
+                <div class="prize-extra">+ Trophy + Gold Medal</div>
+              </div>
+              <div class="prize-box">
+                <div class="prize-rank">2nd Prize</div>
+                <div class="prize-amount">₹1100</div>
+                <div class="prize-extra">+ Trophy + Silver</div>
+              </div>
+              <div class="prize-box">
+                <div class="prize-rank">3rd Prize</div>
+                <div class="prize-amount">₹500</div>
+                <div class="prize-extra">+ Trophy + Bronze</div>
+              </div>
+            </div>
+
+            <div class="class-badge">Classes 1 to 12 · Entry ₹250 Only</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     TRUST BAR
+══════════════════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <div class="trust-icon">🏅</div>
+        <div class="trust-text">
+          <strong>National Level</strong>
+          <span>All India Recognition</span>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">📜</div>
+        <div class="trust-text">
+          <strong>Certified Platform</strong>
+          <span>Official Certificates & Merit Awards</span>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">🎓</div>
+        <div class="trust-text">
+          <strong>Expert Designed</strong>
+          <span>Curated by Education Experts</span>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">🏫</div>
+        <div class="trust-text">
+          <strong>500+ Schools</strong>
+          <span>Trusted by Leading Institutions</span>
+        </div>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <div class="trust-icon">💰</div>
+        <div class="trust-text">
+          <strong>Cash Prizes</strong>
+          <span>Lakhs Worth Scholarships</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════ -->
+<section class="section about-section">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-visual reveal">
+        <div class="about-card-stack">
+          <div class="acard acard-back"></div>
+          <div class="acard acard-main">
+            <h4>Competition Categories</h4>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">Subject-based written competitions for Classes I–XII</p>
+            <div class="subjects-grid">
+              <div class="subj-chip"><span class="icon">➗</span>Maths</div>
+              <div class="subj-chip"><span class="icon">🔬</span>Science</div>
+              <div class="subj-chip"><span class="icon">📖</span>English</div>
+              <div class="subj-chip"><span class="icon">🌍</span>GK</div>
+              <div class="subj-chip"><span class="icon">💻</span>Cyber</div>
+              <div class="subj-chip"><span class="icon">🧠</span>More</div>
+            </div>
+          </div>
+          <div class="acard acard-bottom">
+            <div>
+              <div class="num">₹2100</div>
+              <div class="lbl">Top Cash Prize</div>
+            </div>
+            <div style="width:1px;height:40px;background:var(--border)"></div>
+            <div>
+              <div class="num">100%</div>
+              <div class="lbl">Get Certificate</div>
+            </div>
+            <div style="width:1px;height:40px;background:var(--border)"></div>
+            <div>
+              <div class="num">5</div>
+              <div class="lbl">Subjects</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text reveal">
+        <div class="tag">About Shiksha Ratan</div>
+        <h2>An Education-Focused Initiative to <span class="gold">Celebrate Excellence</span></h2>
+        <p>Shiksha Ratan Talent Hunt is a platform that aims to identify, encourage and celebrate academic excellence among students across India.</p>
+        <p>Our competitions are carefully designed to enhance conceptual understanding, analytical thinking and subject knowledge — giving every child the recognition they deserve.</p>
+
+        <div class="objectives">
+          <div class="obj-item">
+            <div class="obj-icon">🎯</div>
+            <div>
+              <h5>Promote Excellence</h5>
+              <p>Recognize and reward academic achievement at national level</p>
+            </div>
+          </div>
+          <div class="obj-item">
+            <div class="obj-icon">🧩</div>
+            <div>
+              <h5>Enhance Skills</h5>
+              <p>Build conceptual & analytical thinking abilities</p>
+            </div>
+          </div>
+          <div class="obj-item">
+            <div class="obj-icon">💪</div>
+            <div>
+              <h5>Build Confidence</h5>
+              <p>Healthy competition that builds lifelong confidence</p>
+            </div>
+          </div>
+          <div class="obj-item">
+            <div class="obj-icon">⚖️</div>
+            <div>
+              <h5>Fair Platform</h5>
+              <p>Transparent, well-structured, and unbiased evaluation</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="about.html" class="btn-gold">Learn More About Us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     OLYMPIAD CATEGORIES
+══════════════════════════════════════════════════ -->
+<section class="section olympiad-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Olympiad Categories</div>
+      <h2>Explore. <span class="gold">Compete.</span> Excel.</h2>
+      <p>Choose from a wide range of subject-based olympiads designed for students from Class 1 to 12 — each crafted to challenge, inspire and reward.</p>
+    </div>
+
+    <div class="olympiad-grid">
+      <div class="olympiad-card reveal">
+        <div class="oc-icon">🔬</div>
+        <div class="oc-title">Science Olympiad</div>
+        <div class="oc-desc">Explore the wonders of physics, chemistry, biology and beyond. Test your scientific reasoning and curiosity against peers nationwide.</div>
+        <div class="oc-classes">⭐ Classes 1 to 12</div>
+      </div>
+      <div class="olympiad-card reveal">
+        <div class="oc-icon">➗</div>
+        <div class="oc-title">Mathematics Olympiad</div>
+        <div class="oc-desc">From arithmetic to algebra — sharpen your problem-solving skills and logical reasoning in India's most engaging maths competition.</div>
+        <div class="oc-classes">⭐ Classes 1 to 12</div>
+      </div>
+      <div class="olympiad-card reveal">
+        <div class="oc-icon">📖</div>
+        <div class="oc-title">English Olympiad</div>
+        <div class="oc-desc">Master grammar, comprehension and vocabulary. Build communication skills that open doors throughout your academic journey.</div>
+        <div class="oc-classes">⭐ Classes 1 to 12</div>
+      </div>
+      <div class="olympiad-card reveal">
+        <div class="oc-icon">🌍</div>
+        <div class="oc-title">General Knowledge Olympiad</div>
+        <div class="oc-desc">Broaden your horizons with current affairs, history, geography and world knowledge — tested at a national standard.</div>
+        <div class="oc-classes">⭐ Classes 1 to 12</div>
+      </div>
+      <div class="olympiad-card reveal">
+        <div class="oc-icon">💻</div>
+        <div class="oc-title">Cyber Olympiad</div>
+        <div class="oc-desc">Dive into the digital world — computers, coding, internet safety and technology. Prepare for the future with confidence.</div>
+        <div class="oc-classes">⭐ Classes 1 to 12</div>
+      </div>
+      <div class="olympiad-card reveal" style="background:linear-gradient(145deg,rgba(212,160,23,0.08),var(--navy-light));border-color:rgba(212,160,23,0.35);">
+        <div class="oc-icon">🧠</div>
+        <div class="oc-title">Talent Hunt (IQ & Reasoning)</div>
+        <div class="oc-desc">A unique blend of logical reasoning, mental ability, IQ tests and general awareness — the flagship Shiksha Ratan assessment.</div>
+        <div class="oc-classes" style="color:var(--gold);border-color:var(--gold);">⭐ Classes 1 to 10 · FLAGSHIP</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:48px;" class="reveal">
+      <a href="olympiad.html" class="btn-gold">View All Olympiads →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════════════ -->
+<section class="section how-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Simple Process</div>
+      <h2>4 Steps to <span class="gold">Success</span></h2>
+      <p>Getting started is quick and easy. Follow these four steps to begin your child's journey towards national recognition.</p>
+    </div>
+
+    <div class="steps-container reveal">
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num"><span class="step-icon">📝</span></div>
+        <h4>Register</h4>
+        <p>Fill the registration form online in just a few clicks. Simple, fast and secure.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span class="step-icon">📚</span></div>
+        <h4>Prepare</h4>
+        <p>Study smart with our structured syllabus and practice material tailored per class.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span class="step-icon">✍️</span></div>
+        <h4>Appear</h4>
+        <p>Give the Olympiad exam at your own school. Offline, comfortable, and fair.</p>
+      </div>
+      <div class="step">
+        <div class="step-num"><span class="step-icon">🏆</span></div>
+        <h4>Win & Shine</h4>
+        <p>Win cash prizes, trophies, medals, certificates and national-level recognition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     AWARDS & PRIZES
+══════════════════════════════════════════════════ -->
+<section class="section awards-section">
+  <div class="container">
+    <div class="awards-grid">
+      <div class="awards-text reveal">
+        <div class="tag">Awards & Recognition</div>
+        <h2>Celebrate Every <span class="gold">Achievement</span></h2>
+        <p>We believe every child deserves recognition. From participation certificates to cash trophies — our rewards inspire excellence at every level.</p>
+
+        <div class="prize-cards">
+          <div class="prize-card rank1">
+            <div class="prize-medal">🥇</div>
+            <div class="prize-info">
+              <div class="rank-label">1st Rank</div>
+              <div class="rank-val">₹2,100</div>
+              <div class="rank-extras">+ Premium Trophy + Gold Medal + Stage Recognition</div>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-medal">🥈</div>
+            <div class="prize-info">
+              <div class="rank-label">2nd Rank</div>
+              <div class="rank-val">₹1,100</div>
+              <div class="rank-extras">+ Trophy + Silver Medal + Certificate</div>
+            </div>
+          </div>
+          <div class="prize-card">
+            <div class="prize-medal">🥉</div>
+            <div class="prize-info">
+              <div class="rank-label">3rd Rank</div>
+              <div class="rank-val">₹500</div>
+              <div class="rank-extras">+ Trophy + Bronze Medal + Certificate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="perks-grid" style="margin-top:24px;">
+          <div class="perk"><span class="check">✦</span> Merit Certificates for all toppers</div>
+          <div class="perk"><span class="check">✦</span> E-Certificates for all participants</div>
+          <div class="perk"><span class="check">✦</span> Gift hampers for school toppers</div>
+          <div class="perk"><span class="check">✦</span> Social media highlight & recognition</div>
+          <div class="perk"><span class="check">✦</span> Scholarships worth Lakhs</div>
+          <div class="perk"><span class="check">✦</span> National level ranking & report</div>
+        </div>
+      </div>
+
+      <div class="awards-visual reveal">
+        <div class="big-prize-display">
+          <span class="big-trophy">🏆</span>
+          <h3>₹2,100</h3>
+          <p>Top Cash Prize + Premium Trophy + Gold Medal</p>
+          <div class="all-get">
+            <strong>Every Participant Gets</strong>
+            Certificate of Participation + Exciting Rewards + Participation Badge
+          </div>
+          <br>
+          <a href="register.html" class="btn-gold" style="width:100%;justify-content:center;margin-top:4px;">Register & Compete →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EXAM PATTERN
+══════════════════════════════════════════════════ -->
+<section class="section exam-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Exam Pattern</div>
+      <h2>Simple, <span class="gold">Fair</span> & Structured</h2>
+      <p>Our exam is designed by education experts to be age-appropriate, comprehensive, and achievable — giving every child a real shot at winning.</p>
+    </div>
+
+    <div class="exam-grid">
+      <div class="reveal">
+        <div class="pattern-card">
+          <h4>📋 Exam Format</h4>
+          <ul class="pattern-list">
+            <li>📝 Question Type <span class="pill">Multiple Choice (MCQ)</span></li>
+            <li>🎯 Objective Type <span class="pill">Single Correct Answer</span></li>
+            <li>⏱️ Duration <span class="pill">60 Minutes</span></li>
+            <li>📴 Mode <span class="pill">Offline (At School)</span></li>
+            <li>🏫 Venue <span class="pill">Your Own School</span></li>
+            <li>📚 Eligibility <span class="pill">Class 1 – 12</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subjects-cards reveal">
+        <div class="subj-card">
+          <div class="sc-icon">🧮</div>
+          <div>
+            <h5>Logical Reasoning</h5>
+            <p>Patterns, sequences, analogies and critical thinking</p>
+          </div>
+          <div class="sc-tag">All Classes</div>
+        </div>
+        <div class="subj-card">
+          <div class="sc-icon">🧠</div>
+          <div>
+            <h5>Mental Ability</h5>
+            <p>Spatial, verbal & numerical reasoning challenges</p>
+          </div>
+          <div class="sc-tag">All Classes</div>
+        </div>
+        <div class="subj-card">
+          <div class="sc-icon">💡</div>
+          <div>
+            <h5>IQ Assessment</h5>
+            <p>Intelligence quotient testing at age-appropriate levels</p>
+          </div>
+          <div class="sc-tag">Classes 4+</div>
+        </div>
+        <div class="subj-card">
+          <div class="sc-icon">🌐</div>
+          <div>
+            <h5>General Awareness</h5>
+            <p>Current affairs, science, culture and world knowledge</p>
+          </div>
+          <div class="sc-tag">All Classes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     SCHOOL PARTNERSHIP
+══════════════════════════════════════════════════ -->
+<section class="section partner-section">
+  <div class="container">
+    <div class="partner-grid">
+      <div class="partner-text reveal">
+        <div class="tag">School Partnership</div>
+        <h2>Together We Can <span class="gold">Shape the Future</span></h2>
+        <p>Partner with Shiksha Ratan Talent Hunt and bring the olympiad directly to your school. Provide your students with a world-class competitive experience, right on campus.</p>
+
+        <div class="partner-benefits">
+          <div class="pb-item"><span class="check">✓</span> Encourages strong academic culture among students</div>
+          <div class="pb-item"><span class="check">✓</span> Provides performance benchmark for every student</div>
+          <div class="pb-item"><span class="check">✓</span> Recognizes bright students at a national platform</div>
+          <div class="pb-item"><span class="check">✓</span> Helps in overall academic development</div>
+          <div class="pb-item"><span class="check">✓</span> Builds a positive reputation for your institution</div>
+        </div>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="schools.html" class="btn-gold">Become a School Partner →</a>
+          <a href="contact.html" class="btn-outline">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="partner-cards-grid reveal">
+        <div class="pc">
+          <div class="pci">🏫</div>
+          <h5>Olympiad at Your School</h5>
+          <p>We conduct the entire exam on your premises — zero hassle for you</p>
+        </div>
+        <div class="pc">
+          <div class="pci">👩‍🎓</div>
+          <h5>Student Participation</h5>
+          <p>All students from Class 1–12 can participate together</p>
+        </div>
+        <div class="pc">
+          <div class="pci">📊</div>
+          <h5>Certificates & Results</h5>
+          <p>Detailed merit list and e-certificates delivered directly</p>
+        </div>
+        <div class="pc">
+          <div class="pci">🌟</div>
+          <h5>School Recognition</h5>
+          <p>Your school gets featured in our national recognition program</p>
+        </div>
+        <div class="pc">
+          <div class="pci">📣</div>
+          <h5>Visibility & Branding</h5>
+          <p>Gain visibility among school communities & parents across India</p>
+        </div>
+        <div class="pc">
+          <div class="pci">🤝</div>
+          <h5>Trusted Initiative</h5>
+          <p>Associate with a trusted academic platform shaping the future</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════════════════ -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="reveal">
+      <div class="tag" style="margin-bottom:20px;">Don't Miss Out</div>
+      <h2>BE THE NEXT <span class="gold">CHAMPION</span></h2>
+      <p>Registration is open for Classes 1 to 12. Limited seats — secure your spot today and begin your journey to the national stage.</p>
+      <div class="cta-actions">
+        <a href="register.html" class="btn-gold" style="font-size:17px;padding:18px 44px;">Register Now — ₹250 Only →</a>
+        <a href="schools.html" class="btn-outline" style="font-size:16px;">Partner with Us</a>
+      </div>
+      <div class="cta-contact">
+        <span>📞 <a href="tel:7015161707">7015161707</a> &nbsp;|&nbsp; <a href="tel:8708922024">8708922024</a></span>
+        <span>✉️ <a href="mailto:shiksharatantalenthunt@gmail.com">shiksharatantalenthunt@gmail.com</a></span>
+        <span>🌐 <a href="http://www.shiksharatanindia.com" target="_blank">www.ShikshaRatanIndia.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <svg class="logo-diamond" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:44px;">
+            <polygon points="26,6 46,19 46,34 26,47 6,34 6,19" fill="rgba(19,32,96,0.8)"/>
+            <polygon points="26,6 38,16 26,20" fill="#e63946" opacity="0.9"/>
+            <polygon points="38,16 46,19 36,24 26,20" fill="#f4a261" opacity="0.9"/>
+            <polygon points="26,20 36,24 26,47" fill="#2d6a4f" opacity="0.9"/>
+            <polygon points="26,20 16,24 26,47" fill="#4361ee" opacity="0.9"/>
+            <polygon points="6,19 16,24 26,20 26,6 14,16" fill="#9b5de5" opacity="0.9"/>
+            <polygon points="36,24 46,19 46,34 26,47" fill="#48cae4" opacity="0.7"/>
+            <polygon points="6,19 6,34 26,47 16,24" fill="#7b2d8b" opacity="0.7"/>
+            <polygon points="26,1 27.2,4.5 31,4.5 28,6.8 29.2,10.5 26,8.2 22.8,10.5 24,6.8 21,4.5 24.8,4.5" fill="#d4a017"/>
+          </svg>
+          <div class="logo-text">
+            <div class="name">SHIKSHA <span>RATAN</span></div>
+            <div class="sub">Talent Hunt</div>
+          </div>
+        </a>
+        <p>India's most trusted National Level Talent Olympiad — discovering, nurturing, and empowering young minds since day one.</p>
+        <p style="font-size:12px;font-style:italic;color:var(--gold);margin-bottom:16px;">"Discover · Nurture · Empower"</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook">📘</a>
+          <a href="#" class="social-link" title="Instagram">📸</a>
+          <a href="#" class="social-link" title="YouTube">▶️</a>
+          <a href="#" class="social-link" title="Twitter/X">✖️</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="olympiad.html">Olympiads</a></li>
+          <li><a href="schools.html">For Schools</a></li>
+          <li><a href="results.html">Results & Toppers</a></li>
+          <li><a href="register.html">Register Now</a></li>
+        </ul>
+      </div>
+
+      <!-- Olympiads -->
+      <div class="footer-col">
+        <h5>Olympiads</h5>
+        <ul>
+          <li><a href="olympiad.html#science">Science Olympiad</a></li>
+          <li><a href="olympiad.html#maths">Maths Olympiad</a></li>
+          <li><a href="olympiad.html#english">English Olympiad</a></li>
+          <li><a href="olympiad.html#gk">GK Olympiad</a></li>
+          <li><a href="olympiad.html#cyber">Cyber Olympiad</a></li>
+          <li><a href="olympiad.html#talent">Talent Hunt</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h5>Get in Touch</h5>
+        <div class="footer-contact-item">
+          <div class="fci-icon">📞</div>
+          <div class="fci-text">
+            <strong>Phone</strong>
+            <a href="tel:7015161707">7015161707</a><br>
+            <a href="tel:8708922024">8708922024</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="fci-icon">✉️</div>
+          <div class="fci-text">
+            <strong>Email</strong>
+            <a href="mailto:shiksharatantalenthunt@gmail.com">shiksharatantalenthunt@gmail.com</a>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="fci-icon">🌐</div>
+          <div class="fci-text">
+            <strong>Website</strong>
+            <a href="http://www.shiksharatanindia.com" target="_blank">www.ShikshaRatanIndia.com</a>
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <a href="register.html" class="btn-gold" style="font-size:13px;padding:12px 24px;">Register Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Shiksha Ratan Talent Hunt. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+// ─── Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// ─── Mobile menu
+function toggleMobile() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+
+// ─── Animated stars
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 60; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.cssText = `
+    left: ${Math.random() * 100}%;
+    top: ${Math.random() * 100}%;
+    --dur: ${2 + Math.random() * 4}s;
+    animation-delay: ${Math.random() * 5}s;
+    width: ${Math.random() > 0.8 ? 3 : 2}px;
+    height: ${Math.random() > 0.8 ? 3 : 2}px;
+  `;
+  starsEl.appendChild(star);
+}
+
+// ─── Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// ─── Counter animation for stats
+function animateCounter(el, target, suffix = '') {
+  let current = 0;
+  const increment = target / 60;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = (suffix === '₹' ? '₹' : '') + 
+      Math.floor(current).toLocaleString('en-IN') + 
+      (suffix !== '₹' ? suffix : '');
+  }, 25);
+}
+
+// Trigger counters when hero is visible
+const heroStats = document.querySelectorAll('.stat-num');
+let countersStarted = false;
+const heroObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting && !countersStarted) {
+    countersStarted = true;
+    const targets = [50000, 500, 12, 2100];
+    const suffixes = ['+', '+', '', ''];
+    const prefixes = ['', '', '', '₹'];
+    heroStats.forEach((el, i) => {
+      setTimeout(() => {
+        const raw = targets[i];
+        animateCounterCustom(el, raw, prefixes[i], suffixes[i]);
+      }, i * 150);
+    });
+  }
+}, { threshold: 0.5 });
+
+function animateCounterCustom(el, target, prefix, suffix) {
+  let current = 0;
+  const steps = 50;
+  const inc = target / steps;
+  let step = 0;
+  const timer = setInterval(() => {
+    step++;
+    current = Math.min(Math.round(inc * step), target);
+    if (target >= 1000) {
+      el.textContent = prefix + (current >= 1000 ? (current/1000).toFixed(current % 1000 === 0 ? 0 : 0) + 'K' : current) + suffix;
+    } else {
+      el.textContent = prefix + current + suffix;
+    }
+    if (step >= steps) {
+      // Set final formatted value
+      if (target === 50000) el.textContent = '50K+';
+      else if (target === 500) el.textContent = '500+';
+      else if (target === 12) el.textContent = '12';
+      else if (target === 2100) el.textContent = '₹2100';
+      clearInterval(timer);
+    }
+  }, 30);
+}
+
+const heroSection = document.querySelector('.hero');
+if (heroSection) heroObserver.observe(heroSection);
+</script>
+</body>
+</html>
