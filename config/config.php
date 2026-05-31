@@ -19,6 +19,6 @@ $config = [
     'instagram_url' => '#',
     'youtube_url' => '#',
     'logo_path' => '/assets/img/logo.webp',
-    'base_url' => 'http://localhost/shiksharatan' // Adjust as needed for deployment
+    'base_url' => ''
 ];
 ?>
