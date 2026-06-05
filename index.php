@@ -456,6 +456,93 @@
   </div>
 </section>
 
+<!-- 14.6 GALLERY HIGHLIGHTS -->
+<?php 
+require_once __DIR__ . '/includes/gallery_data.php'; 
+$allImages = getGalleryImages();
+// Ensure we have at least some images to show
+if (!empty($allImages)):
+?>
+<section class="gallery-highlights">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+      <span class="tag">Gallery Highlights</span>
+      <h2>Capturing Moments of <span class="text-primary">Excellence</span></h2>
+    </div>
+  </div>
+
+  <!-- Carousel 1 -->
+  <div class="gallery-slider-container" style="position: relative;">
+    <div class="swiper gallerySlider1 gallery-slider">
+      <div class="swiper-wrapper">
+        <?php foreach ($allImages as $img): ?>
+          <div class="swiper-slide">
+            <img src="<?= $config['base_url'] ?>/<?= $img ?>" alt="Gallery Image" loading="lazy">
+          </div>
+        <?php endforeach; ?>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination gallery-pagination"></div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next gallery-button-next"></div>
+      <div class="swiper-button-prev gallery-button-prev"></div>
+    </div>
+  </div>
+
+  <!-- Carousel 2 (Reverse direction or different speed) -->
+  <div class="gallery-slider-container" style="position: relative;">
+    <div class="swiper gallerySlider2 gallery-slider">
+      <div class="swiper-wrapper">
+        <?php 
+        $reversedImages = array_reverse($allImages);
+        foreach ($reversedImages as $img): 
+        ?>
+          <div class="swiper-slide">
+            <img src="<?= $config['base_url'] ?>/<?= $img ?>" alt="Gallery Image" loading="lazy">
+          </div>
+        <?php endforeach; ?>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination gallery-pagination"></div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next gallery-button-next"></div>
+      <div class="swiper-button-prev gallery-button-prev"></div>
+    </div>
+  </div>
+
+  <!-- Carousel 3 -->
+  <div class="gallery-slider-container" style="position: relative;">
+    <div class="swiper gallerySlider3 gallery-slider">
+      <div class="swiper-wrapper">
+        <?php 
+        // Shuffle or shift for variety
+        $shuffledImages = $allImages;
+        if (count($shuffledImages) > 1) {
+            array_push($shuffledImages, array_shift($shuffledImages));
+        }
+        foreach ($shuffledImages as $img): 
+        ?>
+          <div class="swiper-slide">
+            <img src="<?= $config['base_url'] ?>/<?= $img ?>" alt="Gallery Image" loading="lazy">
+          </div>
+        <?php endforeach; ?>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination gallery-pagination"></div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next gallery-button-next"></div>
+      <div class="swiper-button-prev gallery-button-prev"></div>
+    </div>
+  </div>
+
+  <div class="container" style="text-align: center; margin-top: 40px;">
+    <a href="<?= $config['base_url'] ?>/photo-gallery.php" class="btn btn-primary">
+      View More Gallery <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+<?php endif; ?>
+
 <!-- 15. FAQ -->
 <section id="faq" class="section">
   <div class="container">

@@ -27,6 +27,9 @@ require_once __DIR__ . '/../config/config.php';
     <!-- Swiper CSS for Hero Slider -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
+    <!-- Fancybox CSS for Lightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= $config['base_url'] ?>/assets/css/style.css">
 

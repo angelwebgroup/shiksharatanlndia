@@ -132,4 +132,96 @@ $(document).ready(function() {
             },
         });
     }
+
+    // Initialize Gallery Sliders
+    const galleryOptions = {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        speed: 1000,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+            },
+            480: {
+                slidesPerView: 2,
+                spaceBetween: 15,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+            },
+        },
+    };
+
+    if ($('.gallerySlider1').length) {
+        new Swiper(".gallerySlider1", {
+            ...galleryOptions,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".gallerySlider1 .swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".gallerySlider1 .swiper-button-next",
+                prevEl: ".gallerySlider1 .swiper-button-prev",
+            },
+        });
+    }
+
+    if ($('.gallerySlider2').length) {
+        new Swiper(".gallerySlider2", {
+            ...galleryOptions,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+                reverseDirection: true,
+            },
+            pagination: {
+                el: ".gallerySlider2 .swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".gallerySlider2 .swiper-button-next",
+                prevEl: ".gallerySlider2 .swiper-button-prev",
+            },
+        });
+    }
+
+    if ($('.gallerySlider3').length) {
+        new Swiper(".gallerySlider3", {
+            ...galleryOptions,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".gallerySlider3 .swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".gallerySlider3 .swiper-button-next",
+                prevEl: ".gallerySlider3 .swiper-button-prev",
+            },
+        });
+    }
+
+    // Initialize Fancybox
+    if (typeof Fancybox !== 'undefined') {
+        Fancybox.bind("[data-fancybox]", {
+            // Your custom options
+        });
+    }
 });
