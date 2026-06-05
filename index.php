@@ -437,7 +437,7 @@
       <div style="position: relative;">
         <img src="assets/img/founder.png" alt="Founder" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
         <div style="position: absolute; bottom: -20px; right: -20px; background: var(--primary); color: #fff; padding: 20px 30px; border-radius: var(--radius); box-shadow: var(--shadow-md);">
-          <h4 style="margin: 0; font-size: 20px; color: #fff;">Mr. Surendra & Mr. Yogesh</h4>
+          <h4 style="margin: 0; font-size: 20px; color: #fff;">Mr. Surender Ghangash, Mr. Yogesh Rawat</h4>
           <p style="margin: 0; font-size: 14px; opacity: 0.9;">Founders, Shiksha Ratan</p>
         </div>
       </div>
