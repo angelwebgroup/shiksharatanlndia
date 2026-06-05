@@ -26,6 +26,7 @@
         <ul>
           <li><a href="<?= $config['base_url'] ?>/index.php">Home</a></li>
           <li><a href="<?= $config['base_url'] ?>/about.php">About Us</a></li>
+          <li><a href="<?= $config['base_url'] ?>/photo-gallery.php">Photo Gallery</a></li>
           <li><a href="<?= $config['base_url'] ?>/academics.php">Exams & Dates</a></li>
           <li><a href="<?= $config['base_url'] ?>/contact.php">Contact Us</a></li>
         </ul>

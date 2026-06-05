@@ -7,11 +7,12 @@
 
     <!-- Desktop Nav -->
     <nav class="nav">
-      <a href="<?= $config['base_url'] ?>/index.php" class="active">Home</a>
-      <a href="<?= $config['base_url'] ?>/about.php">About</a>
-      <a href="<?= $config['base_url'] ?>/academics.php">Syllabus & Dates</a>
-      <a href="<?= $config['base_url'] ?>/faq.php">FAQs</a>
-      <a href="<?= $config['base_url'] ?>/contact.php">Contact</a>
+      <a href="<?= $config['base_url'] ?>/index.php" class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">Home</a>
+      <a href="<?= $config['base_url'] ?>/about.php" class="<?= basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : '' ?>">About</a>
+      <a href="<?= $config['base_url'] ?>/academics.php" class="<?= basename($_SERVER['PHP_SELF']) == 'academics.php' ? 'active' : '' ?>">Syllabus & Dates</a>
+      <a href="<?= $config['base_url'] ?>/photo-gallery.php" class="<?= basename($_SERVER['PHP_SELF']) == 'photo-gallery.php' ? 'active' : '' ?>">Gallery</a>
+      <a href="<?= $config['base_url'] ?>/faq.php" class="<?= basename($_SERVER['PHP_SELF']) == 'faq.php' ? 'active' : '' ?>">FAQs</a>
+      <a href="<?= $config['base_url'] ?>/contact.php" class="<?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>">Contact</a>
     </nav>
 
     <div class="header-cta">
@@ -27,10 +28,11 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="<?= $config['base_url'] ?>/index.php">Home</a>
-  <a href="<?= $config['base_url'] ?>/about.php">About</a>
-  <a href="<?= $config['base_url'] ?>/academics.php">Syllabus & Dates</a>
-  <a href="<?= $config['base_url'] ?>/faq.php">FAQs</a>
-  <a href="<?= $config['base_url'] ?>/contact.php">Contact</a>
+  <a href="<?= $config['base_url'] ?>/index.php" class="<?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">Home</a>
+  <a href="<?= $config['base_url'] ?>/about.php" class="<?= basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : '' ?>">About</a>
+  <a href="<?= $config['base_url'] ?>/academics.php" class="<?= basename($_SERVER['PHP_SELF']) == 'academics.php' ? 'active' : '' ?>">Syllabus & Dates</a>
+  <a href="<?= $config['base_url'] ?>/photo-gallery.php" class="<?= basename($_SERVER['PHP_SELF']) == 'photo-gallery.php' ? 'active' : '' ?>">Gallery</a>
+  <a href="<?= $config['base_url'] ?>/faq.php" class="<?= basename($_SERVER['PHP_SELF']) == 'faq.php' ? 'active' : '' ?>">FAQs</a>
+  <a href="<?= $config['base_url'] ?>/contact.php" class="<?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>">Contact</a>
   <a href="<?= $config['base_url'] ?>/contact.php" class="btn btn-primary" style="margin-top: 15px; padding: 14px 28px; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;"><i class="fas fa-user-edit"></i> Register Now</a>
 </div>

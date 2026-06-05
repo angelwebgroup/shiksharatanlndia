@@ -7,6 +7,11 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section section-alt" style="padding: 100px 0 60px;">
   <div class="container">
     <div class="section-header" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div style="margin-bottom: 20px;">
+        <a href="<?= $config['base_url'] ?>/index.php" style="color: var(--text-muted); font-size: 14px;"><i class="fas fa-home"></i> Home</a>
+        <span style="margin: 0 10px; color: var(--text-muted);">/</span>
+        <span style="color: var(--primary); font-size: 14px; font-weight: 600;">Gallery</span>
+      </div>
       <span class="tag">Memories</span>
       <h1>Photo <span class="text-primary">Gallery</span></h1>
       <p style="font-size: 18px; color: var(--text-muted); margin-top: 20px;">
