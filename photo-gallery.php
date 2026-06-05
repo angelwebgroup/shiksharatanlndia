@@ -3,20 +3,14 @@ require_once __DIR__ . '/includes/gallery_data.php';
 require_once __DIR__ . '/includes/header.php'; 
 ?>
 
-<!-- Page Header -->
-<section class="section section-alt" style="padding: 100px 0 60px;">
+<!-- HERO -->
+<section class="page-hero" style="background: radial-gradient(circle at center, rgba(255,140,26,0.15) 0%, var(--text-dark) 70%); background-color: var(--text-dark); color: #fff; padding: 100px 0 80px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">
   <div class="container">
-    <div class="section-header" style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <div style="margin-bottom: 20px;">
-        <a href="<?= $config['base_url'] ?>/index.php" style="color: var(--text-muted); font-size: 14px;"><i class="fas fa-home"></i> Home</a>
-        <span style="margin: 0 10px; color: var(--text-muted);">/</span>
-        <span style="color: var(--primary); font-size: 14px; font-weight: 600;">Gallery</span>
-      </div>
-      <span class="tag">Memories</span>
-      <h1>Photo <span class="text-primary">Gallery</span></h1>
-      <p style="font-size: 18px; color: var(--text-muted); margin-top: 20px;">
-        Explore memorable moments from Shiksha Ratan Talent Hunt events, competitions, award ceremonies, and student achievements.
-      </p>
+    <h1 style="font-size: 56px; margin-bottom: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; color: #fff;">Photo <span style="color: var(--primary);">Gallery</span></h1>
+    <div class="breadcrumbs" style="font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">
+      <a href="<?= $config['base_url'] ?>/index.php" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Home</a> 
+      <span style="color: var(--primary); margin: 0 10px;">/</span> 
+      <span style="color: #fff;">Gallery</span>
     </div>
   </div>
 </section>
@@ -24,6 +18,13 @@ require_once __DIR__ . '/includes/header.php';
 <!-- Gallery Grid -->
 <section class="section">
   <div class="container">
+    <div class="section-header" style="max-width: 800px; margin: 0 auto 50px; text-align: center;">
+      <span class="tag">Memories</span>
+      <h2>Capturing <span class="text-primary">Moments</span></h2>
+      <p style="font-size: 18px; color: var(--text-muted); margin-top: 20px;">
+        Explore memorable moments from Shiksha Ratan Talent Hunt events, competitions, award ceremonies, and student achievements.
+      </p>
+    </div>
     <?php 
     $allImages = getGalleryImages();
     if (!empty($allImages)): 
