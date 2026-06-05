@@ -28,16 +28,25 @@ function getGalleryImages() {
         $scannedFiles = scandir($directory);
         foreach ($scannedFiles as $file) {
             if (in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp', 'gif'])) {
-                $files[] = $file;
+                $files[] = [
+                    'name' => $file,
+                    'time' => filemtime($directory . $file)
+                ];
             }
         }
     }
     
-    // Merge manual array with scanned files and remove duplicates
-    $allImages = array_unique(array_merge($galleryImages, $files));
+    // Sort by modification time (latest first)
+    usort($files, function($a, $b) {
+        return $b['time'] <=> $a['time'];
+    });
     
-    // Sort images to keep some order
-    sort($allImages);
+    // Extract names
+    $scannedFileNames = array_column($files, 'name');
+    
+    // Merge manual array with scanned files and remove duplicates
+    // We put scanned files first to prioritize "latest" uploads
+    $allImages = array_unique(array_merge($scannedFileNames, $galleryImages));
     
     // Prepend base URL
     return array_map(function($img) use ($baseUrl) {
